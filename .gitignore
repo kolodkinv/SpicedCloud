@@ -1,0 +1,9 @@
+# ignore this
+bin/
+obj/
+packages/
+TestResults/
+*.user
+*.suo
+*VisualState.xml
+TestResult.xml

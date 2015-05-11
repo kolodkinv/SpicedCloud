@@ -23,7 +23,8 @@ namespace SpicedCloud
             uri = SignRequest(uri, consumerKey, consumerSecret);
 
             var request = (HttpWebRequest)WebRequest.Create(uri);
-            request.Method = WebRequestMethods.Http.Get;
+            //request.Method = WebRequestMethods.Http.Get;
+            request.Method = WebRequestMethods.Http.Post;
 
             var response = request.GetResponse();
 
@@ -88,6 +89,22 @@ namespace SpicedCloud
         public Uri SignRequest(Uri uri, string consumerKey, string consumerSecret, OAuthToken token = null)
         {
             return SignRequest(uri, consumerKey, consumerSecret, token, "GET");
+        }
+
+        public Uri SignRequestOAuth2(Uri uri, string accessToken)
+        {
+            var requestUri = String.Format("{0}?access_token={1}",
+                uri, accessToken);
+
+            return new Uri(requestUri);
+        }
+
+        public Uri SignRequestOAuth2(Uri uri, string accessToken, string parameters)
+        {
+            var requestUri = String.Format("{0}?access_token={1}&{2}",
+                uri, accessToken,parameters);
+
+            return new Uri(requestUri);
         }
     }
 }

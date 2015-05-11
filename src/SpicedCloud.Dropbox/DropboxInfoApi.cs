@@ -9,5 +9,7 @@
         public const string AuthorizeBaseUri = "https://www.dropbox.com/" + ApiVersion + "/";
 
         public const string ApiContentServer = "https://api-content.dropbox.com/" + ApiVersion + "/";
+
+        public const string ApiNotifyServer = "https://api-notify.dropbox.com/" + ApiVersion + "/";
     }
 }

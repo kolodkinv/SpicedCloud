@@ -84,8 +84,8 @@ namespace SpicedCloud.Cmd
                     name = s;
 
             }
+           
             Console.WriteLine("Name= " + name);
-
 
 
             var folder = client.addFile(api, name, path);
@@ -154,7 +154,7 @@ namespace SpicedCloud.Cmd
 
             DropboxClient client = new DropboxClient();
 
-            DropboxApi api = client.connectDropbox();
+            DropboxApi api = client.connectDropbox("KsHXYcj-h_AAAAAAAAAAUr3Ebnrxv-Hrm8Vn7DYRZ5iEA3pw7xZG5jUs8E2UctRZ");
 
 
             var account = client.getInfoAccount(api);

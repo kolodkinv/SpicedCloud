@@ -277,7 +277,7 @@ namespace Dropbox.Api
 
             return ParseJson<FileSystemInfo>(json);
         }
-     
+
         public async Task<LongPollDelta> GetLongPollDeltaAsync(string cursor)
         {
             var uri = new Uri(new Uri(DropboxInfoApi.ApiNotifyServer), "longpoll_delta");
@@ -305,12 +305,29 @@ namespace Dropbox.Api
             return ParseJson<CursorDelta>(json);
         }
        
-        public async Task<Delta> GetDeltaAsync(string cursor)
+        public async Task<Delta> GetDeltaAsync(string cursor, string folder)
         {
             var uri = new Uri(new Uri(DropboxInfoApi.BaseUri), "delta");
             var oauth = new OAuth();
 
-            string parameters = "cursor=" + cursor;
+            string parameters = "cursor=" + cursor + "&path_prefix=" + folder;
+            var requestUri = oauth.SignRequestOAuth2(uri, _accessToken, parameters);
+            var request = (HttpWebRequest)WebRequest.Create(requestUri);
+            request.Method = WebRequestMethods.Http.Post;
+            request.KeepAlive = true;
+
+            var task = request.GetResponseAsync();
+            var res = (HttpWebResponse)await task;
+            StreamReader responseStream = new StreamReader(res.GetResponseStream());
+            return ParseJson<Delta>(responseStream.ReadToEnd());
+        }
+
+        public async Task<Delta> GetDeltaAsync( string folder)
+        {
+            var uri = new Uri(new Uri(DropboxInfoApi.BaseUri), "delta");
+            var oauth = new OAuth();
+
+            string parameters = "path_prefix=" + folder;
             var requestUri = oauth.SignRequestOAuth2(uri, _accessToken, parameters);
             var request = (HttpWebRequest)WebRequest.Create(requestUri);
             request.Method = WebRequestMethods.Http.Post;

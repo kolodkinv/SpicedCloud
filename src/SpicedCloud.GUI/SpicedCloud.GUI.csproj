@@ -67,6 +67,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilesWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilesWindow.Designer.cs">
+      <DependentUpon>FilesWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FolderWindow.Designer.cs">
+      <DependentUpon>FolderWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +87,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FilesWindow.resx">
+      <DependentUpon>FilesWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FolderWindow.resx">
+      <DependentUpon>FolderWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +164,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sync2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toClient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
